@@ -1,0 +1,171 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Eyebrow from '../../components/Eyebrow.astro';
+---
+
+<BaseLayout
+  title="Mes applications — Dieudonné Gwet"
+  description="Les apps que je développe, publie et fais vivre pour mon propre compte — pas des projets clients. Découvrez Kobara, budget par enveloppes pour revenus irréguliers."
+>
+  <header class="page-head">
+    <div class="container narrow">
+      <Eyebrow>Produits personnels</Eyebrow>
+      <h1>Mes <span class="accent">applications</span></h1>
+      <p class="muted lead">
+        Je construis mes propres apps avant de les proposer aux autres. Chaque app ici est un
+        produit que je développe, publie et fais vivre pour mon propre compte — pas un projet
+        client.
+      </p>
+    </div>
+  </header>
+
+  <section class="apps-section">
+    <div class="container grid">
+      <a href="/apps/kobara" class="app-card" data-reveal>
+        <div class="app-logo">K</div>
+        <span class="badge-store">Disponible sur Google Play</span>
+        <h3>Kobara</h3>
+        <p class="muted">Budget par enveloppes pour revenus irréguliers.</p>
+        <span class="link">Découvrir Kobara →</span>
+      </a>
+
+      <div class="coming-card" data-reveal>
+        <span class="badge-coming">À venir</span>
+        <h3>Prochaine app perso</h3>
+        <p>Une nouvelle app est en préparation. Elle apparaîtra ici dès sa publication.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .narrow {
+    max-width: 860px;
+  }
+
+  .page-head {
+    padding-block: clamp(3rem, 7vw, 5.5rem) clamp(1.75rem, 4vw, 2.75rem);
+  }
+
+  .page-head h1 {
+    margin-top: 1.35rem;
+    font-size: clamp(1.875rem, 4.6vw, 3.125rem);
+  }
+
+  .lead {
+    font-size: clamp(1rem, 1.6vw, 1.1875rem);
+    max-width: 58ch;
+    margin-top: 1.35rem;
+  }
+
+  .apps-section {
+    padding-block: clamp(1.25rem, 3vw, 2.5rem) clamp(3.5rem, 8vw, 6.25rem);
+  }
+
+  .grid {
+    max-width: 960px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .app-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 1.875rem;
+    box-shadow: var(--shadow-card);
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .app-card:hover {
+    text-decoration: none;
+    transform: translateY(-4px);
+    box-shadow: 0 16px 34px rgba(16, 25, 43, 0.12);
+  }
+
+  .app-logo {
+    width: 58px;
+    height: 58px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, var(--accent), #1a6fe0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .badge-store {
+    display: inline-block;
+    background: #e7f7ee;
+    color: #1a9d5a;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 11px;
+    border-radius: 14px;
+    margin-top: 1.25rem;
+  }
+
+  .app-card h3 {
+    font-size: 1.4375rem;
+    margin: 1rem 0 0.5rem;
+  }
+
+  .app-card p {
+    font-size: 0.94rem;
+    flex: 1;
+    margin: 0;
+  }
+
+  .link {
+    color: var(--accent);
+    font-weight: 600;
+    margin-top: 1.25rem;
+  }
+
+  .coming-card {
+    background: #f2f5fa;
+    border: 1px dashed #c9d4e4;
+    border-radius: 18px;
+    padding: 1.875rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 220px;
+  }
+
+  .badge-coming {
+    display: inline-block;
+    background: #e7ecf4;
+    color: #8695ae;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 11px;
+    border-radius: 14px;
+  }
+
+  .coming-card h3 {
+    font-size: 1.25rem;
+    margin: 1rem 0 0.5rem;
+    color: var(--muted);
+  }
+
+  .coming-card p {
+    color: #8695ae;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+</style>

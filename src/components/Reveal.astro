@@ -1,0 +1,21 @@
+---
+/**
+ * Script global de révélation au scroll pour les éléments [data-reveal].
+ * Progressive enhancement : sans JS, le contenu reste visible (voir global.css).
+ */
+---
+
+<script>
+  const io = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      }
+    },
+    { threshold: 0.12 }
+  );
+  document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+</script>

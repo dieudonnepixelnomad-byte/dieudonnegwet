@@ -1,0 +1,174 @@
+---
+import AppLayout from '../../../layouts/AppLayout.astro';
+import Eyebrow from '../../../components/Eyebrow.astro';
+import { WHATSAPP_NUMBER_DISPLAY } from '../../../consts';
+
+const majDate = '13 juillet 2026';
+---
+
+<AppLayout
+  title="Règles de confidentialité — Kobara"
+  description="Kobara fonctionne 100% en local : aucun compte, aucun serveur, aucune donnée collectée. Vos données financières ne quittent jamais votre téléphone."
+  appName="Kobara"
+>
+  <section class="page">
+    <div class="container narrow">
+      <header class="head">
+        <Eyebrow>Confidentialité</Eyebrow>
+        <h1>Règles de confidentialité de <span class="accent">Kobara</span></h1>
+        <p class="muted">Dernière mise à jour : {majDate}</p>
+      </header>
+
+      <div class="card resume">
+        <h2>En une phrase</h2>
+        <p>
+          Kobara fonctionne entièrement en local sur votre téléphone :
+          <strong>aucune donnée n'est collectée, transmise ou vendue</strong> — ni par moi, ni par
+          des tiers.
+        </p>
+      </div>
+
+      <article class="block">
+        <h2>1. Éditeur de l'application</h2>
+        <p>
+          Kobara est développée et éditée par Gwet Bikoun Dieudonné, développeur mobile
+          indépendant basé à Douala, Cameroun. Pour toute question relative à la confidentialité :
+          WhatsApp {WHATSAPP_NUMBER_DISPLAY}.
+        </p>
+      </article>
+
+      <article class="block">
+        <h2>2. Données traitées par l'application</h2>
+        <p>
+          Kobara vous permet de saisir manuellement vos rentrées d'argent (montant et canal :
+          virement, Mobile Money, espèces), vos dépenses, vos charges fixes et vos paramètres de
+          budget. Ces informations :
+        </p>
+        <ul>
+          <li>sont stockées <strong>uniquement en local</strong>, sur votre appareil ;</li>
+          <li>ne sont <strong>jamais envoyées</strong> sur un serveur — l'application n'a pas de backend ;</li>
+          <li>ne sont <strong>jamais partagées</strong> avec des tiers, ni utilisées à des fins publicitaires ;</li>
+          <li>ne sont associées à aucune identité : <strong>aucun compte n'est requis</strong>, aucune inscription, aucune donnée de contact demandée.</li>
+        </ul>
+      </article>
+
+      <article class="block">
+        <h2>3. Ce que Kobara ne fait pas</h2>
+        <ul>
+          <li>Pas de compte utilisateur ni d'authentification.</li>
+          <li>Pas de synchronisation ni de sauvegarde sur un serveur distant.</li>
+          <li>Pas d'outil d'analyse d'audience, de tracking ou de profilage.</li>
+          <li>Pas de publicité.</li>
+          <li>
+            Pas de lecture de vos SMS : la saisie des rentrées d'argent (y compris Mobile Money)
+            est entièrement manuelle. L'application ne demande aucune permission d'accès aux SMS.
+          </li>
+        </ul>
+      </article>
+
+      <article class="block">
+        <h2>4. Permissions demandées</h2>
+        <p>
+          La seule permission que Kobara peut vous demander est celle des
+          <strong>notifications</strong>, afin de vous alerter sur l'état de vos enveloppes (par
+          exemple en cas de dépassement). Elle est demandée en contexte, après votre première
+          rentrée d'argent enregistrée, et reste entièrement facultative : refuser n'empêche aucun
+          usage de l'application.
+        </p>
+      </article>
+
+      <article class="block">
+        <h2>5. Conservation et suppression des données</h2>
+        <p>
+          Vos données restent sur votre appareil aussi longtemps que l'application y est
+          installée. <strong>Désinstaller Kobara supprime définitivement l'ensemble des
+          données</strong> qu'elle contient. Aucune copie n'existe ailleurs — je n'ai moi-même
+          aucun moyen d'y accéder, de les restaurer ou de les supprimer à votre place.
+        </p>
+      </article>
+
+      <article class="block">
+        <h2>6. Vos droits</h2>
+        <p>
+          Kobara ne collectant aucune donnée personnelle, il n'existe aucune base de données à
+          consulter, rectifier ou effacer côté éditeur. Vous gardez le contrôle total et exclusif
+          de vos informations, directement dans l'application et sur votre appareil.
+        </p>
+      </article>
+
+      <article class="block">
+        <h2>7. Modifications de cette politique</h2>
+        <p>
+          Si une future version de Kobara introduit un traitement de données différent (par
+          exemple une sauvegarde optionnelle), cette page sera mise à jour et la date de mise à
+          jour modifiée avant le déploiement de cette version.
+        </p>
+      </article>
+    </div>
+  </section>
+</AppLayout>
+
+<style>
+  .narrow {
+    max-width: 720px;
+  }
+
+  .page {
+    padding-block: clamp(3rem, 7vw, 5.5rem);
+  }
+
+  .head h1 {
+    font-size: clamp(1.75rem, 4.2vw, 2.75rem);
+    margin-top: 1.35rem;
+  }
+
+  .head p {
+    font-size: 0.9rem;
+  }
+
+  .resume {
+    border-radius: 16px;
+    padding: 1.6rem 1.75rem;
+    margin-top: 2.25rem;
+    background: var(--accent-soft);
+    border-color: transparent;
+  }
+
+  .resume h2 {
+    font-size: 1.125rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .resume p {
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .block {
+    margin-top: 2.25rem;
+  }
+
+  .block h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .block p {
+    color: #3a4a63;
+    font-size: 0.98rem;
+  }
+
+  .block ul {
+    color: #3a4a63;
+    font-size: 0.98rem;
+    padding-left: 1.2rem;
+    display: grid;
+    gap: 0.45rem;
+    margin: 0 0 1em;
+  }
+
+  .block strong,
+  .resume strong {
+    color: var(--ink);
+  }
+</style>

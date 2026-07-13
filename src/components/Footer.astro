@@ -1,0 +1,111 @@
+---
+import { SOCIAL_LINKS } from '../consts';
+
+const year = new Date().getFullYear();
+const pages = [
+  { href: '/qui-suis-je', label: 'Qui suis-je' },
+  { href: '/apps', label: 'Mes apps' },
+  { href: '/etudes-de-cas', label: 'Études de cas' },
+  { href: '/contact', label: 'Contact' },
+];
+const socials = [
+  { href: SOCIAL_LINKS.tiktok, label: 'TikTok' },
+  { href: SOCIAL_LINKS.instagram, label: 'Instagram' },
+  { href: SOCIAL_LINKS.youtube, label: 'YouTube' },
+  { href: SOCIAL_LINKS.linkedin, label: 'LinkedIn' },
+];
+---
+
+<footer class="footer">
+  <div class="container inner">
+    <div class="brand">
+      <span class="mark">Dieudonné Gwet</span>
+      <p>Développeur produit mobile · Flutter senior · Douala. Comprendre avant de coder.</p>
+    </div>
+    <nav aria-label="Pages du site">
+      <ul>
+        {pages.map((p) => <li><a href={p.href}>{p.label}</a></li>)}
+      </ul>
+    </nav>
+  </div>
+  <div class="container bottom">
+    <p>
+      © {year} Dieudonné Gwet. Tous droits réservés. ·
+      <a href="/confidentialite">Règles de confidentialité</a>
+    </p>
+    <ul aria-label="Réseaux sociaux">
+      {socials.map((s) => (
+        <li>
+          <a href={s.href} target="_blank" rel="noopener noreferrer">
+            {s.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--ink);
+    color: #8695ae;
+    padding-block: 2.75rem 1.5rem;
+  }
+
+  .inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .mark {
+    font-family: var(--font-serif);
+    font-variant: small-caps;
+    letter-spacing: 0.14em;
+    font-size: 1.2rem;
+    color: #fff;
+  }
+
+  .brand p {
+    font-size: 0.85rem;
+    margin: 0.4rem 0 0;
+    max-width: 38ch;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.4rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.88rem;
+  }
+
+  a {
+    color: #8695ae;
+  }
+
+  a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .bottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(134, 149, 174, 0.2);
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+  }
+
+  .bottom p {
+    margin: 0;
+    font-size: 0.8rem;
+  }
+</style>

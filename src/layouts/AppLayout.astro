@@ -1,0 +1,104 @@
+---
+/**
+ * Layout pour les pages d'apps individuelles (/apps/[nom-app]).
+ * Trafic potentiellement publicitaire : nav minimale (logo app → /apps),
+ * footer réduit, un seul chemin de conversion (téléchargement).
+ */
+import BaseHead from '../components/BaseHead.astro';
+import Reveal from '../components/Reveal.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  /** Nom court de l'app affiché dans la nav (ex: "Kobara") */
+  appName: string;
+  /** Initiale du logo carré dégradé */
+  appInitial?: string;
+}
+
+const { title, description, ogImage, appName, appInitial = appName.charAt(0) } = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <BaseHead {title} {description} {ogImage} />
+    <slot name="head" />
+  </head>
+  <body>
+    <nav class="app-nav">
+      <a href="/apps">
+        <span class="app-logo">{appInitial}</span>
+        <span class="app-name">{appName}</span>
+      </a>
+    </nav>
+    <main id="contenu">
+      <slot />
+    </main>
+    <footer class="app-footer">
+      <a href="/apps">← Toutes mes applications</a>
+      <p>
+        {appName} · une app de Dieudonné Gwet ·
+        <a href="/confidentialite" class="privacy-link">Règles de confidentialité</a>
+      </p>
+    </footer>
+    <Reveal />
+  </body>
+</html>
+
+<style>
+  .app-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.1rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    background: #fff;
+  }
+
+  .app-nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .app-logo {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: linear-gradient(135deg, var(--accent), #1a6fe0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .app-name {
+    font-family: var(--font-display);
+    font-size: 1.1875rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .app-footer {
+    padding: 2.1rem 1.25rem;
+    background: var(--ink);
+    color: #8695ae;
+    text-align: center;
+    font-size: 0.85rem;
+  }
+
+  .app-footer a {
+    color: #8fc0ff;
+  }
+
+  .app-footer p {
+    margin: 0.75rem 0 0;
+  }
+</style>

@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+---
+
+<BaseLayout title="Page introuvable — Dieudonné Gwet" description="Cette page n'existe pas ou a été déplacée.">
+  <section class="section">
+    <div class="container wrap">
+      <h1><span class="accent">404</span> — page introuvable</h1>
+      <p class="muted">Cette page n'existe pas ou a été déplacée.</p>
+      <Button href="/">Retour à l'accueil</Button>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .wrap {
+    text-align: center;
+    padding-block: 4rem;
+    display: grid;
+    justify-items: center;
+    gap: 0.5rem;
+  }
+</style>

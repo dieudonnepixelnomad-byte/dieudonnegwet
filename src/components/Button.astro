@@ -1,0 +1,70 @@
+---
+interface Props {
+  href: string;
+  variant?: 'primary' | 'ghost';
+  whatsapp?: boolean;
+  class?: string;
+}
+
+const { href, variant = 'primary', whatsapp = false, class: className = '' } = Astro.props;
+const external = href.startsWith('http');
+---
+
+<a
+  href={href}
+  class:list={['btn', variant, className]}
+  {...external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+>
+  {
+    whatsapp && (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.2-.8l.4-.5c.1-.2 0-.4 0-.5l-.8-1.9c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4 0-.7.3-.2.3-.9.9-.9 2.1s.9 2.5 1 2.6c.1.2 1.8 2.8 4.3 3.9.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.4-.3Z" />
+      </svg>
+    )
+  }
+  <slot />
+</a>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1;
+    padding: 0.9rem 1.6rem;
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    transition:
+      background-color 0.18s ease,
+      box-shadow 0.18s ease,
+      transform 0.18s ease;
+  }
+
+  .btn:hover {
+    text-decoration: none;
+  }
+
+  .primary {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(46, 142, 255, 0.35);
+  }
+
+  .primary:hover {
+    background: #1c7ef0;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(46, 142, 255, 0.4);
+  }
+
+  .ghost {
+    background: transparent;
+    color: var(--accent);
+    padding-inline: 0.75rem;
+  }
+
+  .ghost:hover {
+    background: var(--accent-soft);
+  }
+</style>

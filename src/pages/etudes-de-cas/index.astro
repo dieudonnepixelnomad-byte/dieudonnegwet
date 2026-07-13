@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Eyebrow from '../../components/Eyebrow.astro';
+
+const cas = [
+  {
+    href: '/etudes-de-cas/complete-learning',
+    mono: 'CL',
+    nom: 'Complete Learning',
+    resume:
+      'Marketplace de cours particuliers à Douala, connectant parents, élèves et enseignants — avec paiements Mobile Money testés en conditions réelles.',
+  },
+  {
+    href: '/etudes-de-cas/alertcontacts',
+    mono: 'AC',
+    nom: 'AlertContacts',
+    resume:
+      "App de sécurité familiale et de tranquillité d'esprit, disponible sur iOS et Android, avec un marché prioritaire en France et en Europe francophone.",
+  },
+];
+---
+
+<BaseLayout
+  title="Études de cas — Projets clients | Dieudonné Gwet"
+  description="Complete Learning et AlertContacts : deux projets clients où j'ai piloté validation, construction et monétisation d'apps mobiles."
+>
+  <header class="page-head">
+    <div class="container narrow">
+      <Eyebrow>Études de cas</Eyebrow>
+      <h1>Des projets clients, de l'idée à <span class="accent">la publication</span></h1>
+      <p class="muted lead">
+        Deux applications où j'ai piloté la même méthode — comprendre, valider, construire,
+        publier, monétiser — pour des besoins clients bien réels.
+      </p>
+    </div>
+  </header>
+
+  <section class="cases-section">
+    <div class="container grid">
+      {
+        cas.map((c) => (
+          <a href={c.href} class="case-card" data-reveal>
+            <div class="visual" aria-hidden="true">
+              <span>{c.mono}</span>
+            </div>
+            <div class="body">
+              <span class="tag">Projet client</span>
+              <h3>{c.nom}</h3>
+              <p class="muted">{c.resume}</p>
+              <span class="link">Voir l'étude de cas →</span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .narrow {
+    max-width: 860px;
+  }
+
+  .page-head {
+    padding-block: clamp(3rem, 7vw, 5.5rem) clamp(1.75rem, 4vw, 2.75rem);
+  }
+
+  .page-head h1 {
+    margin-top: 1.35rem;
+    font-size: clamp(1.875rem, 4.6vw, 3.125rem);
+  }
+
+  .lead {
+    font-size: clamp(1rem, 1.6vw, 1.1875rem);
+    max-width: 56ch;
+    margin-top: 1.35rem;
+  }
+
+  .cases-section {
+    padding-block: clamp(1.25rem, 3vw, 2.5rem) clamp(3.5rem, 8vw, 6.25rem);
+  }
+
+  .grid {
+    max-width: 960px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .case-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .case-card:hover {
+    text-decoration: none;
+    transform: translateY(-4px);
+    box-shadow: 0 16px 34px rgba(16, 25, 43, 0.12);
+  }
+
+  .visual {
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--accent-soft), var(--bg));
+    border-bottom: 1px solid var(--border);
+  }
+
+  .visual span {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #cfe1fb;
+  }
+
+  .body {
+    padding: 1.625rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .tag {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 11px;
+    border-radius: 14px;
+    align-self: flex-start;
+  }
+
+  .body h3 {
+    font-size: 1.375rem;
+    margin: 1rem 0 0.6rem;
+  }
+
+  .body p {
+    font-size: 0.94rem;
+    flex: 1;
+    margin: 0;
+  }
+
+  .link {
+    color: var(--accent);
+    font-weight: 600;
+    margin-top: 1.25rem;
+  }
+</style>

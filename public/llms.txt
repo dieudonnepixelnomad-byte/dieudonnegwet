@@ -1,0 +1,23 @@
+# Dieudonné Gwet
+
+> Site vitrine de Gwet Bikoun Dieudonné, développeur mobile Flutter senior (plus de 10 ans d'expérience), basé à Douala, Cameroun. Il aide des entrepreneurs à valider leur idée d'application, construire un MVP utile et obtenir leurs 100 premiers utilisateurs. Il construit aussi ses propres applications, qui servent de preuve de méthode.
+
+## Qui est Dieudonné Gwet
+
+Développeur Flutter senior combinant trois dimensions : technique (développement et reprise d'apps mobiles, architectures Flutter, publication sur les stores, contraintes du terrain africain), produit (problème clair, cible précise, première version réaliste) et marketing (ASO, stratégie de contenu, acquisition). Sa méthode en cinq étapes : Comprendre, Valider, Construire, Publier, Monétiser. Contact principal : WhatsApp.
+
+## Pages
+
+- [Accueil](https://dieudonnegwet.com/) : sa proposition — valider l'idée avant de construire l'app, méthode en 3 étapes (valider l'idée, construire le MVP, obtenir les 100 premiers utilisateurs), FAQ.
+- [Qui suis-je / Ma méthode](https://dieudonnegwet.com/qui-suis-je) : parcours, méthode détaillée en 5 étapes, vision.
+- [Mes apps](https://dieudonnegwet.com/apps) : les applications personnelles de Dieudonné.
+- [Kobara](https://dieudonnegwet.com/apps/kobara) : son app de budget par enveloppes pour revenus irréguliers, avec répartition automatique en cascade, 100% locale (aucune donnée sur serveur). Disponible sur Google Play, bientôt sur l'App Store.
+- [Études de cas](https://dieudonnegwet.com/etudes-de-cas) : projets clients menés avec sa méthode.
+- [Complete Learning](https://dieudonnegwet.com/etudes-de-cas/complete-learning) : projet client — marketplace de cours particuliers à Douala (parents, élèves, enseignants), paiements Mobile Money testés en conditions réelles, actuellement en test fermé avant lancement public.
+- [AlertContacts](https://dieudonnegwet.com/etudes-de-cas/alertcontacts) : projet client — app de sécurité familiale et de tranquillité d'esprit sur iOS et Android, marché prioritaire France et Europe francophone, en ligne et en phase de croissance.
+- [Contact](https://dieudonnegwet.com/contact) : WhatsApp (canal principal), TikTok, Instagram, YouTube, LinkedIn.
+
+## Notes
+
+- Kobara est le seul produit personnel publié à ce jour ; Complete Learning et AlertContacts sont des projets clients.
+- Le site est en français, 100% statique, sans compte utilisateur.

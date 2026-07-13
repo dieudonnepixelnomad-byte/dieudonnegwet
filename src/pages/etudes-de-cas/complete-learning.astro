@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CaseStudy from '../../components/CaseStudy.astro';
+
+const sections = [
+  {
+    icon: '🔍',
+    titre: 'Comprendre',
+    contenu:
+      "Les parents cherchent des professeurs particuliers fiables, les enseignants cherchent des élèves, et personne n'a de moyen structuré de se trouver ni de suivre les progrès réels de l'élève.",
+  },
+  {
+    icon: '✅',
+    titre: 'Valider',
+    contenu:
+      "Le suivi de progression via des tests avant/après les cours a été identifié comme un vrai différenciateur — un parent veut voir si son enfant progresse, pas juste payer des heures de cours.",
+  },
+  {
+    icon: '🛠️',
+    titre: 'Construire',
+    contenu:
+      'Authentification sans mot de passe par numéro de téléphone (pas de friction OTP), flux de paiement Mobile Money géré manuellement, suivi des résultats pré/post-test.',
+  },
+  {
+    icon: '🚀',
+    titre: 'Publier',
+    contenu:
+      'Actuellement en phase de test fermé obligatoire (minimum 12 testeurs actifs sur 14 jours consécutifs) avant la mise en production sur Google Play.',
+  },
+  {
+    icon: '💰',
+    titre: 'Monétiser',
+    contenu:
+      'Paiements Mobile Money déjà testés en conditions réelles avec de vrais utilisateurs pendant le développement.',
+  },
+];
+---
+
+<BaseLayout
+  title="Étude de cas — Complete Learning | Dieudonné Gwet"
+  description="Marketplace de cours particuliers à Douala. Comment j'ai validé, construit et testé les paiements Mobile Money en conditions réelles."
+  ogType="article"
+>
+  <CaseStudy
+    nomDebut="Complete "
+    nomAccent="Learning"
+    tagInfo="Douala · Marketplace"
+    contexte="Marketplace de cours particuliers à Douala, connectant parents, élèves et enseignants."
+    sections={sections}
+    statut="Complete Learning est actuellement en test fermé avant son lancement public sur le Play Store."
+    ctaTitre="Un projet similaire"
+    ctaAccent="en tête"
+  />
+</BaseLayout>

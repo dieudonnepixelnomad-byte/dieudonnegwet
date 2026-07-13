@@ -1,0 +1,181 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Eyebrow from '../components/Eyebrow.astro';
+import { WHATSAPP_NUMBER_DISPLAY } from '../consts';
+
+const majDate = '13 juillet 2026';
+---
+
+<BaseLayout
+  title="Règles de confidentialité — Dieudonné Gwet"
+  description="Comment ce site et l'application Kobara traitent vos données : pas de compte, pas de tracking, pas de collecte cachée."
+>
+  <section class="page">
+    <div class="container narrow">
+      <header class="head">
+        <Eyebrow>Confidentialité</Eyebrow>
+        <h1>Règles de <span class="accent">confidentialité</span></h1>
+        <p class="muted">Dernière mise à jour : {majDate}</p>
+      </header>
+
+      <div class="card block">
+        <h2>En résumé</h2>
+        <ul class="summary">
+          <li>Ce site ne dépose <strong>aucun cookie</strong> et n'utilise <strong>aucun outil de tracking</strong>.</li>
+          <li>Il n'y a <strong>ni compte utilisateur, ni formulaire</strong> : aucune donnée n'est collectée en naviguant.</li>
+          <li>L'application <strong>Kobara fonctionne 100% en local</strong> : vos données financières ne quittent jamais votre téléphone.</li>
+        </ul>
+      </div>
+
+      <article class="block">
+        <h2>1. Qui suis-je</h2>
+        <p>
+          Ce site est édité par Gwet Bikoun Dieudonné, développeur mobile indépendant basé à
+          Douala, Cameroun. Pour toute question relative à la confidentialité, contactez-moi sur
+          WhatsApp au {WHATSAPP_NUMBER_DISPLAY}.
+        </p>
+      </article>
+
+      <article class="block">
+        <h2>2. Données collectées sur ce site</h2>
+        <p>
+          Ce site est entièrement statique. Il ne comporte ni compte utilisateur, ni formulaire,
+          ni espace commentaire, ni outil d'analyse d'audience, ni cookie. Aucune donnée
+          personnelle n'est collectée, stockée ou partagée lors de votre navigation.
+        </p>
+        <p>
+          L'hébergeur du site peut générer des journaux techniques (adresse IP, pages consultées)
+          nécessaires au fonctionnement et à la sécurité du service, conformément à sa propre
+          politique de confidentialité.
+        </p>
+      </article>
+
+      <article class="block">
+        <h2>3. Contact via WhatsApp</h2>
+        <p>
+          Le canal de contact principal du site est WhatsApp. Si vous m'écrivez, votre numéro et
+          vos messages sont traités par WhatsApp (Meta) selon ses propres conditions et sa propre
+          politique de confidentialité. Je n'utilise vos coordonnées que pour répondre à votre
+          demande — jamais pour de la prospection non sollicitée, et je ne les transmets à
+          personne.
+        </p>
+      </article>
+
+      <article class="block">
+        <h2>4. Application Kobara</h2>
+        <p>
+          Kobara est une application de budget par enveloppes qui fonctionne entièrement en local
+          sur votre appareil :
+        </p>
+        <ul>
+          <li>aucun compte à créer ;</li>
+          <li>aucune donnée envoyée sur un serveur ;</li>
+          <li>aucun outil de tracking ou de publicité ;</li>
+          <li>vos données financières restent exclusivement sur votre téléphone.</li>
+        </ul>
+        <p>
+          La suppression de l'application supprime l'ensemble des données qu'elle contient. Aucune
+          copie n'existe ailleurs.
+        </p>
+      </article>
+
+      <article class="block">
+        <h2>5. Liens externes</h2>
+        <p>
+          Ce site contient des liens vers des services tiers (Google Play, WhatsApp, réseaux
+          sociaux). Une fois sur ces services, leurs propres politiques de confidentialité
+          s'appliquent.
+        </p>
+      </article>
+
+      <article class="block">
+        <h2>6. Vos droits</h2>
+        <p>
+          Ce site ne détenant aucune donnée personnelle vous concernant, il n'y a rien à
+          consulter, rectifier ou supprimer de mon côté. Pour les échanges WhatsApp, vous pouvez
+          me demander à tout moment la suppression de notre conversation de mes appareils.
+        </p>
+      </article>
+
+      <article class="block">
+        <h2>7. Évolution de ces règles</h2>
+        <p>
+          Si le site évolue (ajout d'un formulaire, d'une newsletter ou d'un outil de mesure
+          d'audience), cette page sera mise à jour avant la mise en place de tout nouveau
+          traitement de données.
+        </p>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .narrow {
+    max-width: 720px;
+  }
+
+  .page {
+    padding-block: clamp(3rem, 7vw, 5.5rem);
+  }
+
+  .head h1 {
+    font-size: clamp(1.875rem, 4.6vw, 3rem);
+    margin-top: 1.35rem;
+  }
+
+  .head p {
+    font-size: 0.9rem;
+  }
+
+  .block {
+    margin-top: 2.25rem;
+  }
+
+  .card.block {
+    border-radius: 16px;
+    padding: 1.6rem 1.75rem;
+  }
+
+  .block h2 {
+    font-size: 1.25rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .block p {
+    color: #3a4a63;
+    font-size: 0.98rem;
+  }
+
+  .block ul {
+    color: #3a4a63;
+    font-size: 0.98rem;
+    padding-left: 1.2rem;
+    display: grid;
+    gap: 0.4rem;
+    margin: 0 0 1em;
+  }
+
+  .summary {
+    list-style: none;
+    padding-left: 0 !important;
+    gap: 0.75rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  .summary li {
+    padding-left: 1.6rem;
+    position: relative;
+  }
+
+  .summary li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .summary strong {
+    color: var(--ink);
+  }
+</style>

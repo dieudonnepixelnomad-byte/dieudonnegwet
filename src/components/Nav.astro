@@ -1,0 +1,108 @@
+---
+import Button from './Button.astro';
+import { WHATSAPP_URL } from '../consts';
+
+interface Props {
+  /** Nav minimale pour les pages d'app (trafic ads) : logo seul, renvoyant vers /apps */
+  minimal?: boolean;
+}
+
+const { minimal = false } = Astro.props;
+const links = [
+  { href: '/qui-suis-je', label: 'Qui suis-je' },
+  { href: '/apps', label: 'Mes apps' },
+  { href: '/etudes-de-cas', label: 'Études de cas' },
+  { href: '/contact', label: 'Contact' },
+];
+const current = Astro.url.pathname;
+---
+
+<header class="nav-wrap">
+  <div class="container nav">
+    <a href={minimal ? '/apps' : '/'} class="wordmark">Dieudonné Gwet</a>
+    {
+      !minimal && (
+        <>
+          <nav aria-label="Navigation principale">
+            <ul>
+              {links.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    aria-current={current === link.href || current === link.href + '/' ? 'page' : undefined}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <Button href={WHATSAPP_URL} whatsapp class="nav-cta">
+            Valider mon idée
+          </Button>
+        </>
+      )
+    }
+  </div>
+</header>
+
+<style>
+  .nav-wrap {
+    background: rgba(247, 249, 252, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-block: 0.9rem;
+  }
+
+  nav ul {
+    display: flex;
+    gap: 1.75rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav a {
+    color: var(--muted);
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+
+  nav a:hover,
+  nav a[aria-current='page'] {
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  nav a[aria-current='page'] {
+    color: var(--accent);
+  }
+
+  :global(.nav-cta) {
+    padding: 0.65rem 1.25rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  @media (max-width: 860px) {
+    nav {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    :global(.nav-cta) {
+      padding: 0.55rem 1rem !important;
+      font-size: 0.85rem !important;
+    }
+  }
+</style>

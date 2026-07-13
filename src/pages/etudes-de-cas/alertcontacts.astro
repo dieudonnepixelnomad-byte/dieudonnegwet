@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CaseStudy from '../../components/CaseStudy.astro';
+
+const sections = [
+  {
+    icon: '🔍',
+    titre: 'Comprendre',
+    contenu:
+      "Le vrai problème n'est pas technique, il est émotionnel : l'anxiété de ne pas savoir si ses proches sont en sécurité. Ce n'est pas une app de géolocalisation — c'est une app de tranquillité d'esprit.",
+  },
+  {
+    icon: '✅',
+    titre: 'Valider',
+    contenu:
+      "Trois « Aha moments » ont été identifiés comme déclencheurs de valeur perçue : établir la confiance dès qu'un proche accepte l'invitation, voir sa position en temps réel, puis recevoir une vraie alerte utile. L'onboarding cible le premier de ces moments le plus tôt possible.",
+  },
+  {
+    icon: '🛠️',
+    titre: 'Construire',
+    liste: [
+      'Authentification sans mot de passe (magic link)',
+      "Connexion bidirectionnelle (mécanisme d'équité + boucle virale)",
+      'Alertes communautaires, publiques ou réservées aux proches',
+      'Mode invisible temporaire (premium), avec notification transparente aux proches',
+      "Gestion offline pensée pour ne jamais bloquer l'utilisateur",
+    ],
+  },
+  {
+    icon: '🚀',
+    titre: 'Publier',
+    contenu: "Disponible sur le Google Play Store et l'Apple App Store.",
+  },
+  {
+    icon: '💰',
+    titre: 'Monétiser',
+    contenu: 'Modèle freemium à 3 paliers : Gratuit, Solo, Famille.',
+  },
+];
+---
+
+<BaseLayout
+  title="Étude de cas — AlertContacts | Dieudonné Gwet"
+  description="App de sécurité familiale et de tranquillité d'esprit, sur iOS et Android. Validation par les Aha moments, connexion bidirectionnelle, modèle freemium."
+  ogType="article"
+>
+  <CaseStudy
+    nomDebut="Alert"
+    nomAccent="Contacts"
+    tagInfo="En ligne · iOS & Android"
+    tagInfoOnline
+    contexte="Application de sécurité familiale et de tranquillité d'esprit, disponible sur iOS et Android, avec un marché prioritaire en France et en Europe francophone."
+    sections={sections}
+    statut="AlertContacts est en ligne et en phase de croissance de sa base d'utilisateurs."
+    statutOnline
+    ctaTitre="Une app à valider ou"
+    ctaAccent="à relancer"
+  />
+</BaseLayout>
