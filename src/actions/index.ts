@@ -99,7 +99,11 @@ export const server = {
       if (runtime.RESEND_API_KEY && runtime.CONTACT_TO_EMAIL && runtime.CONTACT_FROM_EMAIL) {
         const response = await fetch('https://api.resend.com/emails', {
           method: 'POST',
-          headers: { authorization: `Bearer ${runtime.RESEND_API_KEY}`, 'content-type': 'application/json' },
+          headers: {
+            authorization: `Bearer ${runtime.RESEND_API_KEY}`,
+            'content-type': 'application/json',
+            'user-agent': 'dieudonnegwet.com/1.0',
+          },
           body: JSON.stringify({
             from: runtime.CONTACT_FROM_EMAIL,
             to: [runtime.CONTACT_TO_EMAIL],
