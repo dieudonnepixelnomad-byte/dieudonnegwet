@@ -1,0 +1,39 @@
+---
+export const prerender = true;
+import { getCollection } from 'astro:content';
+import FinalCta from '@/components/FinalCta.astro';
+import PageHero from '@/components/PageHero.astro';
+import ProjectCard from '@/components/ProjectCard.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const projects = (await getCollection('projects', ({ data }) => data.published)).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Réalisations — Produits et plateformes conçus | Dieudonne Gwet" description="Découvrez les produits et plateformes cadrés ou conçus par Dieudonne Gwet, avec une distinction claire entre faits observables et éléments documentés.">
+  <PageHero eyebrow="Réalisations" title="Produits et plateformes conçus" lead="Chaque dossier explique le contexte, les contraintes et les décisions documentées. Aucun résultat n’est ajouté lorsque les éléments disponibles ne permettent pas de le vérifier." reference={`${projects.length.toString().padStart(2, '0')} DOSSIERS PUBLICS · MISE À JOUR 2026`} />
+  <section class="section">
+    <div class="container">
+      <div class="evidence-key">
+        <p class="eyebrow">Clé de lecture</p>
+        <div><strong>Observable</strong><span>Visible directement sur une interface ou un livrable.</span></div>
+        <div><strong>Documenté</strong><span>Décrit dans un cahier des charges, sans déduire la livraison complète.</span></div>
+      </div>
+      <div class="projects-grid">
+        {projects.map((project) => (
+          <ProjectCard slug={project.id} title={project.data.shortTitle} category={project.data.category} reference={project.data.reference} excerpt={project.data.excerpt} visual={project.data.visual} statusLabel={project.data.statusLabel} />
+        ))}
+      </div>
+    </div>
+  </section>
+  <FinalCta eyebrow="Votre projet" title="Votre savoir-faire mérite lui aussi un dossier clair." />
+</BaseLayout>
+
+<style>
+  .evidence-key { display: grid; gap: var(--space-4); margin-bottom: var(--space-8); padding: var(--space-5); border: 1px solid var(--border-default); background: var(--surface-soft); }
+  .evidence-key .eyebrow { margin-bottom: 0; }
+  .evidence-key div { display: grid; gap: var(--space-1); }
+  .evidence-key strong { font-family: var(--font-display); font-size: 1.2rem; }
+  .evidence-key span { color: var(--text-secondary); }
+  .projects-grid { display: grid; gap: var(--space-6); }
+  @media (min-width: 48rem) { .evidence-key { grid-template-columns: 0.6fr 1fr 1fr; align-items: start; }.projects-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>

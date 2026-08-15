@@ -1,0 +1,31 @@
+---
+import { footerNavigation, site } from '@/data/site';
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <a class="footer-brand" href="/">{site.name}</a>
+      <p>{site.descriptor}<br />{site.location} · Projets à distance</p>
+    </div>
+    <nav aria-label="Navigation de pied de page">
+      {footerNavigation.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+    <div class="footer-note">
+      <p>Stratégie · Contenus<br />Direction visuelle · Développement</p>
+      <p>© {new Date().getFullYear()} {site.name}</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer { padding: var(--space-8) 0; border-top: 1px solid var(--border-default); }
+  .footer-grid { display: grid; gap: var(--space-7); }
+  .footer-brand { font: 700 1.5rem/1 var(--font-display); letter-spacing: -0.04em; text-decoration: none; }
+  .site-footer p { margin: var(--space-4) 0 0; color: var(--text-secondary); }
+  .site-footer nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3) var(--space-5); align-content: start; }
+  .site-footer nav a { min-height: 2.75rem; display: inline-flex; align-items: center; font-weight: 600; }
+  .footer-note { font: 500 var(--font-size-label)/1.55 var(--font-utility); text-transform: uppercase; }
+  @media (min-width: 48rem) { .footer-grid { grid-template-columns: 1fr 1fr 1fr; } .footer-note { text-align: right; } }
+</style>
+

@@ -1,0 +1,6 @@
+ENVIRONMENT=development
+TURNSTILE_SECRET_KEY=
+PUBLIC_TURNSTILE_SITE_KEY=
+RESEND_API_KEY=
+CONTACT_TO_EMAIL=dieudonnegwet86@gmail.com
+CONTACT_FROM_EMAIL=Dieudonne Gwet <contact@dieudonnegwet.com>

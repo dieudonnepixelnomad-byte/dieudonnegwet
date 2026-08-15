@@ -1,0 +1,26 @@
+---
+export const prerender = true;
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import { site } from '@/data/site';
+---
+
+<BaseLayout title="Mentions légales | Dieudonne Gwet" description="Informations relatives à l’édition et à l’utilisation du site dieudonnegwet.com." noindex>
+  <PageHero eyebrow="Informations" title="Mentions légales" lead="Informations relatives à l’édition et à l’utilisation de dieudonnegwet.com." reference="VERSION / 14 AOÛT 2026" />
+  <section class="section"><div class="container legal-copy">
+    <div class="notice"><p><strong>À valider avant publication.</strong> La forme juridique, l’adresse professionnelle complète et l’hébergeur définitif doivent être confirmés par l’éditeur avant la mise en ligne.</p></div>
+    <h2>Éditeur du site</h2>
+    <p>Le site <strong>{site.domain}</strong> est édité par Dieudonne Gwet, concepteur et développeur web et mobile exerçant à Douala, Cameroun.</p>
+    <ul><li>Responsable de la publication : Dieudonne Gwet</li><li>Contact : <a href={`mailto:${site.email}`}>{site.email}</a></li><li>Statut juridique et adresse professionnelle complète : à compléter avant publication</li></ul>
+    <h2>Hébergement</h2>
+    <p>Les informations de l’hébergeur seront ajoutées lorsque la plateforme de déploiement aura été définitivement choisie et configurée. Le code est actuellement préparé pour une infrastructure Cloudflare, mais cette préparation ne prouve pas que le site public y est déjà hébergé.</p>
+    <h2>Propriété intellectuelle</h2>
+    <p>Sauf mention contraire, la structure, les textes, la direction visuelle et les éléments graphiques originaux de ce site appartiennent à l’éditeur. Les noms, interfaces et documents relatifs aux projets présentés restent la propriété de leurs titulaires respectifs.</p>
+    <p>Toute reproduction substantielle est soumise à une autorisation préalable. Les courtes citations restent possibles lorsqu’elles identifient clairement la source et respectent les droits applicables.</p>
+    <h2>Informations publiées</h2>
+    <p>Les études de cas distinguent les éléments observables, les informations documentées dans les sources disponibles et les déclarations qui n’ont pas fait l’objet d’une vérification indépendante. Les contenus ne constituent pas une promesse de résultat commercial.</p>
+    <h2>Responsabilité</h2>
+    <p>L’éditeur s’efforce de maintenir des informations exactes et accessibles, sans pouvoir garantir l’absence permanente d’erreur, d’interruption ou d’indisponibilité. Les liens externes sont fournis pour faciliter la consultation ; leur contenu reste sous la responsabilité de leurs éditeurs.</p>
+    <h2>Contact</h2><p>Pour toute question relative au site, écrivez à <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+  </div></section>
+</BaseLayout>

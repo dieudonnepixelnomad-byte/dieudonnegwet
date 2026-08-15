@@ -1,0 +1,78 @@
+---
+export const prerender = true;
+import { getCollection, render } from 'astro:content';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import FinalCta from '@/components/FinalCta.astro';
+import ProjectVisual from '@/components/ProjectVisual.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects', ({ data }) => data.published);
+  return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const evidenceLabels = {
+  observable: 'Éléments observables',
+  documented: 'Conception documentée',
+  declared: 'Éléments déclarés',
+};
+---
+
+<BaseLayout title={`${project.data.shortTitle} — Étude de cas | Dieudonne Gwet`} description={project.data.excerpt} type="article">
+  <header class="case-hero">
+    <div class="container">
+      <Breadcrumbs items={[{ label: 'Réalisations', href: '/realisations' }, { label: project.data.shortTitle }]} />
+      <p class="case-reference">{project.data.reference}{project.data.year !== 'À confirmer' && ` · ${project.data.year}`}</p>
+      <div class="case-hero__grid">
+        <div>
+          <p class="eyebrow">{project.data.category}</p>
+          <h1>{project.data.title}</h1>
+        </div>
+        <div>
+          <p class="case-lead">{project.data.excerpt}</p>
+          <span class="evidence-badge">{evidenceLabels[project.data.evidenceLevel]}</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="case-visual-section">
+    <div class="container"><ProjectVisual kind={project.data.visual} title={project.data.shortTitle} /></div>
+  </section>
+
+  <section class="section">
+    <div class="container case-layout">
+      <aside>
+        <p class="eyebrow">Faits disponibles</p>
+        <ul class="fact-list">{project.data.facts.map((fact) => <li>{fact}</li>)}</ul>
+        {project.data.stack.length > 0 && <><p class="eyebrow stack-label">Technologies prévues</p><div class="tag-list">{project.data.stack.map((item) => <span>{item}</span>)}</div></>}
+      </aside>
+      <article class="case-copy"><Content /></article>
+    </div>
+  </section>
+
+  <FinalCta eyebrow="Votre projet" title="Construisons un dossier que vos prospects peuvent vérifier." />
+</BaseLayout>
+
+<style>
+  .case-hero { padding: var(--space-6) 0 clamp(4rem, 8vw, 7.5rem); border-bottom: 1px solid var(--border-default); }
+  .case-reference { margin: var(--space-8) 0 var(--space-5); color: var(--text-secondary); font: 600 var(--font-size-label)/1.4 var(--font-utility); }
+  .case-hero__grid, .case-layout { display: grid; gap: var(--space-7); }
+  .case-hero h1 { max-width: 18ch; }
+  .case-lead { max-width: 38rem; color: var(--text-secondary); font-size: var(--font-size-body-lg); }
+  .evidence-badge { display: inline-flex; padding: .5rem .7rem; border: 1px solid var(--accent-proof); color: var(--accent-proof); font: 600 var(--font-size-label)/1 var(--font-utility); text-transform: uppercase; }
+  .case-visual-section { padding: var(--space-6) 0; background: var(--surface-strong); }
+  .case-layout aside { align-self: start; }
+  .stack-label { margin-top: var(--space-8); }
+  .tag-list { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .tag-list span { padding: .45rem .65rem; border: 1px solid var(--border-default); background: var(--surface-soft); font: 500 var(--font-size-label)/1.3 var(--font-utility); }
+  .case-copy { max-width: 45rem; }
+  .case-copy :global(h2) { margin: var(--space-8) 0 var(--space-4); font-size: clamp(1.8rem, 4vw, 2.8rem); }
+  .case-copy :global(h2:first-child) { margin-top: 0; }
+  .case-copy :global(h3) { margin: var(--space-7) 0 var(--space-3); font-size: 1.4rem; }
+  .case-copy :global(p), .case-copy :global(li) { color: var(--text-secondary); }
+  .case-copy :global(strong) { color: var(--text-primary); }
+  @media (min-width: 48rem) { .case-hero__grid { grid-template-columns: 1.2fr .8fr; align-items: end; }.case-layout { grid-template-columns: minmax(15rem, .65fr) minmax(0, 1.35fr); gap: clamp(3rem, 8vw, 8rem); } .case-layout aside { position: sticky; top: calc(var(--header-height) + var(--space-6)); } }
+</style>

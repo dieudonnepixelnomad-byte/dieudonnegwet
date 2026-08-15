@@ -1,0 +1,32 @@
+---
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  text?: string;
+}
+const {
+  eyebrow = 'Première étape',
+  title = 'Votre présence digitale montre-t-elle vraiment votre niveau ?',
+  text = 'Présentez-moi votre activité et ce que vous souhaitez améliorer. Nous vérifierons d’abord si un diagnostic complet est réellement utile.',
+} = Astro.props;
+---
+
+<section class="final-cta section section--strong">
+  <div class="container final-cta__grid">
+    <div><p class="eyebrow eyebrow--inverse">{eyebrow}</p><h2>{title}</h2></div>
+    <div>
+      <p>{text}</p>
+      <a class="button button--inverse" href="/diagnostic">Demander mon diagnostic de crédibilité</a>
+      <small>Formulaire de qualification, puis échange exploratoire gratuit de 20 à 30 minutes.</small>
+    </div>
+  </div>
+</section>
+
+<style>
+  .final-cta__grid { display: grid; gap: var(--space-7); align-items: end; }
+  .final-cta h2 { max-width: 13ch; }
+  .final-cta p { max-width: 37rem; margin-bottom: var(--space-5); color: var(--color-mineral-200); font-size: var(--font-size-body-lg); }
+  .final-cta small { display: block; max-width: 34rem; margin-top: var(--space-4); color: var(--color-mineral-300); }
+  @media (min-width: 48rem) { .final-cta__grid { grid-template-columns: 1.15fr 0.85fr; } }
+</style>
+

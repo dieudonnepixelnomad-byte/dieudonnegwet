@@ -1,0 +1,22 @@
+---
+export const prerender = true;
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/PageHero.astro';
+import { site } from '@/data/site';
+---
+
+<BaseLayout title="Politique de confidentialité | Dieudonne Gwet" description="Comment les informations envoyées via le formulaire de diagnostic sont utilisées, protégées et supprimées." noindex>
+  <PageHero eyebrow="Données personnelles" title="Politique de confidentialité" lead="Cette page explique quelles informations sont collectées lorsque vous demandez un diagnostic et dans quel but elles sont utilisées." reference="VERSION / 14 AOÛT 2026" />
+  <section class="section"><div class="container legal-copy">
+    <h2>Responsable du traitement</h2><p>Dieudonne Gwet est responsable des informations transmises via ce site. Contact : <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+    <h2>Données collectées</h2><p>Le formulaire peut recueillir votre identité, vos coordonnées professionnelles, le nom et le secteur de votre entreprise, les liens vers votre présence digitale, une description de votre activité, de vos preuves disponibles, de votre besoin, de votre calendrier, de votre budget et de votre processus de décision.</p>
+    <h2>Finalité</h2><p>Ces données sont utilisées uniquement pour analyser votre demande, déterminer si un accompagnement est pertinent, vous répondre, préparer un éventuel échange et conserver l’historique nécessaire au suivi de la relation.</p>
+    <h2>Base de la collecte</h2><p>Vous transmettez volontairement ces informations et confirmez votre accord avant l’envoi. Les champs obligatoires sont nécessaires pour comprendre le projet et vous répondre de façon utile.</p>
+    <h2>Destinataires et sous-traitants</h2><p>Les données sont accessibles à Dieudonne Gwet. Selon la configuration définitive, elles pourront être traitées par l’hébergeur du site, le service de base de données, le service d’envoi d’e-mails et le service de protection anti-abus. Les prestataires effectivement activés seront précisés ici avant la publication.</p>
+    <h2>Durée de conservation</h2><p>Les demandes qui ne donnent pas lieu à une relation contractuelle sont destinées à être supprimées au plus tard 12 mois après le dernier échange, sauf obligation légale ou demande de suppression antérieure. Les documents contractuels et comptables suivent les durées imposées par les règles applicables.</p>
+    <h2>Sécurité</h2><p>Le site est conçu pour limiter les données collectées, vérifier les soumissions automatisées et transmettre les secrets de configuration en dehors du code source. Aucun système connecté à Internet ne peut toutefois garantir un risque nul.</p>
+    <h2>Vos demandes</h2><p>Vous pouvez demander l’accès, la rectification ou la suppression des informations vous concernant en écrivant à <a href={`mailto:${site.email}`}>{site.email}</a>. Une vérification d’identité proportionnée peut être demandée afin d’éviter la divulgation à un tiers.</p>
+    <h2>Cookies et mesure d’audience</h2><p>Le site ne dépose pas volontairement de cookie publicitaire. Si un outil de mesure d’audience sans cookie est activé au déploiement, cette section sera mise à jour avec son identité et son fonctionnement.</p>
+    <h2>Mise à jour</h2><p>Cette politique sera ajustée lorsque l’hébergement et les services de production seront définitivement configurés. La date de version affichée en haut de page permet d’identifier le texte applicable.</p>
+  </div></section>
+</BaseLayout>

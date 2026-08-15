@@ -1,0 +1,25 @@
+<aside class="proof-board" aria-label="Les trois groupes de preuves que votre site doit organiser">
+  <div class="proof-board__meta"><span>DOSSIER / 01</span><span>STRUCTURER LA CONFIANCE</span></div>
+  <div class="proof-stack" aria-hidden="true">
+    <div class="fragment fragment--one"><span>01</span>Réalisations</div>
+    <div class="fragment fragment--two"><span>02</span>Méthode</div>
+    <div class="fragment fragment--three"><span>03</span>Garanties + contact</div>
+  </div>
+  <p class="proof-board__caption">La qualité existe déjà. Le site organise les éléments qui permettent de la comprendre.</p>
+</aside>
+
+<style>
+  .proof-board { position: relative; min-height: clamp(25rem, 55vw, 35rem); overflow: hidden; padding: var(--space-5); border-radius: var(--radius-medium); background: var(--surface-strong); color: var(--text-inverse); }
+  .proof-board::after { content: ""; position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(color-mix(in srgb, var(--color-white) 10%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--color-white) 10%, transparent) 1px, transparent 1px); background-size: 3rem 3rem; }
+  .proof-board__meta { position: relative; z-index: 2; display: flex; justify-content: space-between; gap: var(--space-4); font: 500 var(--font-size-label)/1.4 var(--font-utility); color: var(--color-mineral-200); }
+  .proof-stack { position: absolute; inset: 5.5rem var(--space-5) 5.5rem; z-index: 1; }
+  .fragment { position: absolute; min-height: 7.5rem; display: grid; align-content: end; padding: var(--space-4); border: 1px solid color-mix(in srgb, var(--color-white) 62%, transparent); background: var(--color-mineral-700); font: 600 0.75rem/1.4 var(--font-utility); letter-spacing: 0.06em; text-transform: uppercase; animation: assemble var(--motion-signature) var(--ease-out) both; }
+  .fragment span { align-self: start; color: var(--color-mineral-200); }
+  .fragment--one { inset: 0 29% 52% 0; transform: rotate(-2deg); }
+  .fragment--two { inset: 23% 0 26% 42%; background: var(--accent-proof); animation-delay: 70ms; }
+  .fragment--three { inset: 62% 22% 0 10%; background: var(--surface-raised); color: var(--text-primary); animation-delay: 140ms; }
+  .fragment--three span { color: var(--accent-proof); }
+  .proof-board__caption { position: absolute; right: var(--space-5); bottom: var(--space-4); left: var(--space-5); z-index: 2; margin: 0; color: var(--color-mineral-200); font-size: 0.9rem; }
+  @keyframes assemble { from { opacity: 0; transform: translateY(1.5rem); } to { opacity: 1; } }
+</style>
+

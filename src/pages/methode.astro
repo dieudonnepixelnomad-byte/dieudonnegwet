@@ -1,0 +1,52 @@
+---
+export const prerender = true;
+import FinalCta from '@/components/FinalCta.astro';
+import PageHero from '@/components/PageHero.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const phases = [
+  ['01', 'Écouter avant de proposer', 'Activité, clients prioritaires, objections, ambitions et contraintes sont explicités. La recommandation vient après ce cadrage.'],
+  ['02', 'Inventorier les preuves', 'Réalisations, processus, garanties, documents, avis vérifiés et éléments observables sont classés selon leur solidité.'],
+  ['03', 'Construire le récit', 'Le parcours relie chaque affirmation à une preuve, puis conduit vers une action simple et mesurable.'],
+  ['04', 'Concevoir et développer', 'Direction visuelle et développement avancent dans un même système, validé sur des écrans représentatifs.'],
+  ['05', 'Vérifier et transmettre', 'Contenus, liens, formulaires, accessibilité et affichage sont contrôlés avant la mise en ligne et la prise en main.'],
+];
+---
+
+<BaseLayout title="Méthode — Du savoir-faire à la preuve digitale | Dieudonne Gwet" description="Une méthode en cinq phases pour transformer le savoir-faire d’une PME en présence digitale claire, crédible et mesurable.">
+  <PageHero eyebrow="Méthode" title="Du savoir-faire à la preuve digitale" lead="Une démarche courte, structurée et vérifiable. Chaque décision doit servir la compréhension, la crédibilité ou le passage à l’action." reference="PROCESSUS / 05 PHASES · VALIDATIONS CONSOLIDÉES" />
+
+  <section class="section">
+    <div class="container method-grid">
+      <div><p class="eyebrow">Principe directeur</p><h2>Une affirmation sans preuve reste une promesse.</h2></div>
+      <div class="lead-copy"><p>Le travail commence par ce que l’entreprise peut réellement montrer : une réalisation, un processus, une garantie, un document ou une interface observable.</p><p>Ce qui n’est pas vérifiable est présenté comme une intention, une hypothèse ou un périmètre prévu. Cette discipline protège la confiance au lieu de la fabriquer artificiellement.</p></div>
+    </div>
+  </section>
+
+  <section class="section section--strong">
+    <div class="container">
+      <ol class="method-list">{phases.map(([number, title, text]) => <li><span>{number}</span><h2>{title}</h2><p>{text}</p></li>)}</ol>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container method-grid">
+      <div><p class="eyebrow">Votre implication</p><h2>Les bons arbitrages demandent des réponses nettes.</h2></div>
+      <ul class="fact-list"><li>Un interlocuteur décisionnaire disponible</li><li>Les accès et documents utiles transmis au démarrage</li><li>Des retours consolidés aux dates convenues</li><li>La validation des affirmations publiées</li><li>Des photographies et vidéos fournies par vos soins ou un prestataire</li></ul>
+    </div>
+  </section>
+  <FinalCta title="Votre matière existe déjà. Organisons-la." />
+</BaseLayout>
+
+<style>
+  .method-grid { display: grid; gap: var(--space-7); align-items: start; }
+  .method-grid h2 { max-width: 14ch; }
+  .lead-copy { max-width: 43rem; font-size: var(--font-size-body-lg); }
+  .lead-copy p:last-child { color: var(--text-secondary); }
+  .method-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid color-mix(in srgb, white 30%, transparent); }
+  .method-list li { display: grid; gap: var(--space-4); padding: var(--space-7) 0; border-bottom: 1px solid color-mix(in srgb, white 22%, transparent); }
+  .method-list span { color: var(--color-mineral-300); font: 600 var(--font-size-label)/1.4 var(--font-utility); }
+  .method-list h2 { font-size: clamp(1.7rem, 4vw, 3rem); }
+  .method-list p { max-width: 39rem; margin: 0; color: var(--color-mineral-200); }
+  @media (min-width: 48rem) { .method-grid { grid-template-columns: 1fr 1fr; }.method-list li { grid-template-columns: 4rem .8fr 1.2fr; align-items: start; } }
+</style>

@@ -1,0 +1,18 @@
+---
+export const prerender = true;
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page introuvable | Dieudonne Gwet" description="La page demandée n’existe pas ou a été déplacée." noindex>
+  <section class="not-found"><div class="container not-found__grid"><p class="error-code">404 / DOSSIER INTROUVABLE</p><div><p class="eyebrow">Page introuvable</p><h1>Cette preuve n’est pas au bon endroit.</h1><p>La page demandée n’existe pas, a été déplacée ou son adresse comporte une erreur.</p><div class="actions"><a class="button" href="/">Retour à l’accueil</a><a class="button button--secondary" href="/realisations">Voir les réalisations</a></div></div></div></section>
+</BaseLayout>
+
+<style>
+  .not-found { min-height: 70vh; display: grid; align-items: center; padding: var(--space-8) 0; }
+  .not-found__grid { display: grid; gap: var(--space-8); }
+  .error-code { align-self: start; padding-top: var(--space-3); border-top: 1px solid var(--border-strong); color: var(--accent-proof); font: 600 var(--font-size-label)/1.4 var(--font-utility); }
+  .not-found h1 { max-width: 12ch; }
+  .not-found h1 + p { max-width: 35rem; margin: var(--space-5) 0 0; color: var(--text-secondary); font-size: var(--font-size-body-lg); }
+  .actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-7); }
+  @media (min-width: 48rem) { .not-found__grid { grid-template-columns: .6fr 1.4fr; }.error-code { position: sticky; top: var(--space-7); } }
+</style>

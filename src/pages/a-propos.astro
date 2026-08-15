@@ -1,0 +1,49 @@
+---
+export const prerender = true;
+import FinalCta from '@/components/FinalCta.astro';
+import PageHero from '@/components/PageHero.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="À propos — Dieudonne Gwet, concepteur et développeur" description="Dieudonne Gwet accompagne les PME de la stratégie au développement de leur présence digitale, avec une pratique web et mobile de plus de dix ans.">
+  <PageHero eyebrow="À propos" title="Un interlocuteur unique, de la structure au code" lead="Je suis Dieudonne Gwet, concepteur et développeur web et mobile basé à Douala. Je travaille seul aujourd’hui, avec une responsabilité directe sur chaque décision du projet." reference="PROFIL / DOUALA · WEB + MOBILE" />
+
+  <section class="section">
+    <div class="container about-grid">
+      <div><p class="eyebrow">Parcours</p><h2>Plus de dix ans entre produits, plateformes et applications.</h2></div>
+      <div class="about-copy"><p>Mon parcours professionnel documente des responsabilités de conception et de développement sur des produits web et mobiles. Les projets présentés sur ce site couvrent notamment l’éducation, la mobilité, la sécurité et la location de livres.</p><p>Cette expérience technique ne remplace pas la compréhension métier. Elle permet surtout de faire avancer la stratégie, le contenu, l’interface et le développement sans perdre les décisions entre plusieurs prestataires.</p></div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container principles-grid">
+      <article><span>01</span><h3>Clarté avant effet</h3><p>Une interface n’a pas besoin d’être spectaculaire pour être convaincante. Elle doit d’abord rendre l’offre, la preuve et l’action évidentes.</p></article>
+      <article><span>02</span><h3>Preuve avant promesse</h3><p>Je distingue les résultats observables, les éléments documentés et ce qui reste à valider. Cette distinction fait partie du travail.</p></article>
+      <article><span>03</span><h3>Système avant accumulation</h3><p>Pages, contenus et composants sont conçus comme un ensemble cohérent afin de simplifier les évolutions futures.</p></article>
+      <article><span>04</span><h3>Autonomie après livraison</h3><p>La transmission, la documentation essentielle et une période de stabilisation font partie de l’offre Évidence.</p></article>
+    </div>
+  </section>
+
+  <section class="section section--strong">
+    <div class="container about-grid">
+      <div><p class="eyebrow eyebrow--inverse">Modèle de travail</p><h2>Un studio indépendant, pas une agence à étages.</h2></div>
+      <div><p class="inverse-lead">Vous échangez avec la personne qui structure, conçoit et développe. Lorsque le projet exige une compétence extérieure — photographie ou vidéo, par exemple — elle est identifiée clairement et chiffrée séparément.</p><p class="capacity">CAPACITÉ DE DÉPART / 2 MISSIONS ÉVIDENCE PAR MOIS</p></div>
+    </div>
+  </section>
+  <FinalCta title="Voyons si votre projet correspond à cette manière de travailler." />
+</BaseLayout>
+
+<style>
+  .about-grid { display: grid; gap: var(--space-7); align-items: start; }
+  .about-grid h2 { max-width: 14ch; }
+  .about-copy, .inverse-lead { max-width: 43rem; font-size: var(--font-size-body-lg); }
+  .about-copy p:last-child { color: var(--text-secondary); }
+  .inverse-lead { color: var(--color-mineral-200); }
+  .capacity { margin-top: var(--space-7); color: var(--color-mineral-300); font: 600 var(--font-size-label)/1.4 var(--font-utility); }
+  .principles-grid { display: grid; gap: 1px; border: 1px solid var(--border-default); background: var(--border-default); }
+  .principles-grid article { min-height: 18rem; padding: var(--space-5); background: var(--surface-page); }
+  .principles-grid span { color: var(--accent-proof); font: 600 var(--font-size-label)/1 var(--font-utility); }
+  .principles-grid h3 { margin-top: var(--space-8); }
+  .principles-grid p { color: var(--text-secondary); }
+  @media (min-width: 48rem) { .about-grid { grid-template-columns: 1fr 1fr; }.principles-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>

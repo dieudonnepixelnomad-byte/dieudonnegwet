@@ -1,0 +1,26 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  lead: string;
+  reference?: string;
+}
+const { eyebrow, title, lead, reference } = Astro.props;
+---
+
+<header class="page-hero">
+  <div class="container">
+    {reference && <p class="page-reference">{reference}</p>}
+    <div class="page-hero__grid">
+      <div><p class="eyebrow">{eyebrow}</p><h1>{title}</h1></div>
+      <p class="page-hero__lead">{lead}</p>
+    </div>
+    <slot />
+  </div>
+</header>
+
+<style>
+  .page-reference { margin: 0 0 var(--space-7); padding-bottom: var(--space-3); border-bottom: 1px solid var(--border-default); color: var(--text-secondary); font: 500 var(--font-size-label)/1.4 var(--font-utility); letter-spacing: 0.05em; text-transform: uppercase; }
+  :global(.page-hero .hero-actions) { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-7); }
+</style>
+

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#F3F6F5"/>
+  <path d="M0 0h1200v32H0z" fill="#121820"/>
+  <g stroke="#B8C9CF" stroke-width="1"><path d="M80 100h1040M80 530h1040M80 100v430M1120 100v430"/></g>
+  <text x="82" y="152" fill="#B34B2B" font-family="monospace" font-size="20" letter-spacing="3">DIEUDONNE GWET / STUDIO DIGITAL INDÉPENDANT</text>
+  <text x="80" y="286" fill="#121820" font-family="Arial, sans-serif" font-size="78" font-weight="700">Votre site doit pouvoir</text>
+  <text x="80" y="374" fill="#121820" font-family="Arial, sans-serif" font-size="78" font-weight="700">prouver votre valeur.</text>
+  <rect x="845" y="417" width="275" height="72" fill="#29465B"/>
+  <text x="875" y="461" fill="#fff" font-family="monospace" font-size="18">DIEUDONNEGWET.COM</text>
+</svg>

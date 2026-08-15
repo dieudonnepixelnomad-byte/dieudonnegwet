@@ -1,0 +1,213 @@
+---
+export const prerender = true;
+
+import { getCollection } from 'astro:content';
+import ArrowIcon from '@/components/ArrowIcon.astro';
+import FinalCta from '@/components/FinalCta.astro';
+import ProjectCard from '@/components/ProjectCard.astro';
+import ProofBoard from '@/components/ProofBoard.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const projects = (await getCollection('projects', ({ data }) => data.published && data.featured))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const faqs = [
+  ['Est-ce que le premier échange est payant ?', 'Non. Le premier échange dure environ 20 à 30 minutes et sert à vérifier si votre situation correspond à mon intervention. Il ne comprend pas d’audit complet ni de rapport écrit.'],
+  ['Pourquoi le diagnostic complet coûte-t-il 150 000 FCFA ?', 'Il comprend la collecte, l’analyse de votre présence selon cinq axes, un document de priorités et une restitution. Si une mission Évidence est signée dans les 30 jours pour la même entreprise, ce montant est déduit selon les conditions de la proposition.'],
+  ['Combien coûte un projet Évidence ?', 'Le périmètre de référence commence à 1 200 000 FCFA. Le prix final dépend du nombre de pages, du volume de contenu, des fonctionnalités et de l’état des éléments existants.'],
+  ['Combien de temps faut-il prévoir ?', 'La durée indicative est de 5 à 7 semaines. Elle dépend également de la disponibilité des contenus, des accès et des validations du client.'],
+  ['La photographie et la vidéo sont-elles incluses ?', 'Non. Je peux préparer le brief et intégrer les médias, mais leur production est réalisée par un prestataire distinct ou fournie par votre entreprise.'],
+  ['Le site garantit-il davantage de clients ?', 'Non. Le site peut rendre votre valeur plus claire, organiser vos preuves et améliorer le parcours de contact. Les résultats commerciaux dépendent aussi de l’offre, de la réputation, du marché et des actions d’acquisition.'],
+];
+---
+
+<BaseLayout>
+  <section class="home-hero">
+    <div class="container home-hero__grid">
+      <div class="home-hero__copy">
+        <p class="eyebrow">Studio digital indépendant · Douala</p>
+        <h1>Votre entreprise fait du bon travail. Votre site doit pouvoir le prouver.</h1>
+        <p class="home-hero__lead">Je transforme vos réalisations, votre méthode et vos garanties en un site clair qui aide vos futurs clients à comprendre votre valeur avant de vous contacter.</p>
+        <div class="home-hero__actions">
+          <a class="button" href="/diagnostic">Demander mon diagnostic de crédibilité</a>
+          <a class="button button--text" href="/evidence">Découvrir Évidence <ArrowIcon /></a>
+        </div>
+        <p class="home-hero__note">Premier échange de 20 à 30 minutes gratuit. Le diagnostic complet n’est proposé que s’il est pertinent.</p>
+      </div>
+      <ProofBoard />
+    </div>
+  </section>
+
+  <section class="section gap-section">
+    <div class="container">
+      <div class="section-head">
+        <div><p class="eyebrow">Le décalage</p><h2>Le problème n’est pas toujours votre niveau. C’est ce qu’on peut en comprendre.</h2></div>
+        <p class="section-head__intro">Vous pouvez avoir de vraies réalisations et une méthode sérieuse. Si ces éléments sont dispersés ou mal expliqués, un prospect qui ne vous connaît pas ne dispose pas encore des bonnes raisons de vous choisir.</p>
+      </div>
+      <div class="gap-grid">
+        <article><span>01 / CONTEXTE</span><h3>Des images sans explication</h3><p>Un projet montré sans besoin initial, contrainte ni rôle précis reste difficile à évaluer.</p></article>
+        <article><span>02 / DIFFÉRENCE</span><h3>Des services interchangeables</h3><p>Une liste de prestations ne suffit pas à expliquer votre manière de travailler ni votre niveau d’exigence.</p></article>
+        <article><span>03 / DÉCISION</span><h3>Un contact demandé trop tôt</h3><p>Le visiteur est invité à écrire avant d’avoir vu les éléments nécessaires pour vous faire confiance.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section evidence-intro section--soft">
+    <div class="container evidence-intro__grid">
+      <div>
+        <p class="eyebrow">L’offre principale</p>
+        <h2>Évidence</h2>
+        <p class="evidence-signature">Le site qui rend votre valeur visible avant le premier contact.</p>
+      </div>
+      <div class="evidence-copy">
+        <p>La mission commence par vos clients, vos réalisations, leurs objections et les éléments que vous pouvez réellement démontrer. Elle se poursuit par la rédaction, la direction visuelle et le développement d’un site cohérent.</p>
+        <div class="price-block"><span>À partir de</span><strong>1 200 000 FCFA</strong><small>Durée indicative : 5 à 7 semaines</small></div>
+        <a class="button" href="/evidence">Voir le détail d’Évidence</a>
+      </div>
+    </div>
+    <div class="container evidence-pillars">
+      <article><span>01</span><h3>Un message compréhensible</h3><p>Ce que vous faites, pour qui et dans quelles situations vous êtes pertinent.</p></article>
+      <article><span>02</span><h3>Des réalisations qui expliquent</h3><p>Le contexte, les contraintes, votre démarche et les faits disponibles.</p></article>
+      <article><span>03</span><h3>Un parcours de confiance</h3><p>La méthode, les garanties, les objections et la prochaine action.</p></article>
+      <article><span>04</span><h3>Un site exploitable</h3><p>Responsive, mesurable, accessible et transmis avec une prise en main.</p></article>
+    </div>
+  </section>
+
+  <section class="section" id="realisations">
+    <div class="container">
+      <div class="section-head">
+        <div><p class="eyebrow">Produits et plateformes conçus</p><h2>Des décisions pensées pour le terrain.</h2></div>
+        <div><p class="section-head__intro">Mon parcours s’est construit autour de plateformes et d’applications confrontées à des contraintes concrètes : connectivité, paiement, géolocalisation, administration et sécurité.</p><p class="portfolio-note">Ces projets démontrent une manière de cadrer et de concevoir. Ils ne sont pas présentés comme des missions Évidence.</p></div>
+      </div>
+      <div class="projects-grid">
+        {projects.map((project) => (
+          <ProjectCard
+            slug={project.id}
+            title={project.data.shortTitle}
+            category={project.data.category}
+            reference={project.data.reference}
+            excerpt={project.data.excerpt}
+            visual={project.data.visual}
+            statusLabel={project.data.statusLabel}
+          />
+        ))}
+      </div>
+      <div class="section-action"><a class="link-arrow" href="/realisations">Voir toutes les réalisations <ArrowIcon /></a></div>
+    </div>
+  </section>
+
+  <section class="section process-section section--strong">
+    <div class="container">
+      <div class="section-head">
+        <div><p class="eyebrow eyebrow--inverse">Le processus</p><h2>Du constat à une présence claire.</h2></div>
+        <p class="section-head__intro">Un ordre simple : comprendre avant d’écrire, structurer avant de dessiner, valider avant de développer.</p>
+      </div>
+      <ol class="process-grid">
+        <li><span>01 / DIAGNOSTIQUER</span><h3>Voir le décalage</h3><p>Analyser ce que votre présence actuelle permet de comprendre et les preuves déjà disponibles.</p></li>
+        <li><span>02 / STRUCTURER</span><h3>Organiser la décision</h3><p>Définir la cible, le message, le plan du site et les réalisations à contextualiser.</p></li>
+        <li><span>03 / DIRIGER</span><h3>Donner une forme</h3><p>Créer une direction visuelle cohérente et valider les écrans représentatifs.</p></li>
+        <li><span>04 / CONSTRUIRE</span><h3>Déployer et vérifier</h3><p>Développer, intégrer, tester les parcours et préparer la mise en ligne.</p></li>
+      </ol>
+      <a class="button button--inverse" href="/methode">Comprendre toute la méthode</a>
+    </div>
+  </section>
+
+  <section class="section about-strip">
+    <div class="container about-strip__grid">
+      <div class="identity-card" aria-label="Présentation de Dieudonne Gwet">
+        <span class="identity-card__ref">INTERLOCUTEUR / 01</span>
+        <strong>DG</strong>
+        <p>Dieudonne Gwet<br />Douala · Cameroun</p>
+      </div>
+      <div>
+        <p class="eyebrow">Votre interlocuteur</p>
+        <h2>Pas d’intermédiaire entre la réflexion et l’exécution.</h2>
+        <p class="about-lead">Je suis Dieudonne Gwet, concepteur et développeur web et mobile. Mon parcours documenté commence dans le développement en 2015, avec une spécialisation Flutter depuis 2020.</p>
+        <p>Vous travaillez directement avec moi pour le cadrage, les contenus, la direction visuelle et le développement. La photographie et la vidéo, lorsqu’elles sont nécessaires, sont produites séparément.</p>
+        <a class="link-arrow" href="/a-propos">Découvrir mon parcours <ArrowIcon /></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section faq-section">
+    <div class="container faq-grid">
+      <div><p class="eyebrow">Questions fréquentes</p><h2>Ce qu’il faut savoir avant de commencer.</h2></div>
+      <div class="faq-list">
+        {faqs.map(([question, answer], index) => (
+          <details open={index === 0}>
+            <summary>{question}<span aria-hidden="true">+</span></summary>
+            <p>{answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FinalCta />
+</BaseLayout>
+
+<style>
+  .home-hero { padding: clamp(3.5rem, 7vw, 7.5rem) 0 var(--space-9); }
+  .home-hero__grid { display: grid; gap: var(--space-8); align-items: end; }
+  .home-hero h1 { max-width: 10.5ch; }
+  .home-hero__lead { max-width: 40rem; margin: var(--space-6) 0 0; color: var(--text-secondary); font-size: var(--font-size-body-lg); }
+  .home-hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4); margin-top: var(--space-6); }
+  .home-hero__actions :global(svg) { width: 1rem; }
+  .home-hero__note { max-width: 35rem; margin: var(--space-3) 0 0; color: var(--text-secondary); font-size: 0.95rem; }
+  .gap-section { border-top: 1px solid var(--border-default); }
+  .gap-grid { display: grid; gap: 1px; border: 1px solid var(--border-default); background: var(--border-default); }
+  .gap-grid article { min-height: 17rem; padding: var(--space-6); background: var(--surface-raised); }
+  .gap-grid span, .process-grid span { color: var(--accent-proof); font: 600 var(--font-size-label)/1.4 var(--font-utility); letter-spacing: 0.04em; }
+  .gap-grid h3, .process-grid h3 { margin-top: var(--space-8); }
+  .gap-grid p, .process-grid p { margin: var(--space-4) 0 0; color: var(--text-secondary); }
+  .evidence-intro { position: relative; }
+  .evidence-intro__grid { display: grid; gap: var(--space-7); }
+  .evidence-intro h2 { max-width: none; font-size: clamp(4rem, 13vw, 10rem); }
+  .evidence-signature { max-width: 25rem; margin: var(--space-5) 0 0; font-size: var(--font-size-body-lg); }
+  .evidence-copy > p { max-width: 39rem; font-size: var(--font-size-body-lg); }
+  .price-block { display: grid; gap: var(--space-2); margin: var(--space-7) 0 var(--space-5); padding-block: var(--space-5); border-block: 1px solid var(--border-default); }
+  .price-block span, .price-block small { font: 500 var(--font-size-label)/1.4 var(--font-utility); text-transform: uppercase; }
+  .price-block strong { font: 700 clamp(2rem, 5vw, 3.75rem)/1 var(--font-display); letter-spacing: -0.05em; }
+  .evidence-pillars { display: grid; gap: 1px; margin-top: clamp(4rem, 8vw, 8rem); border: 1px solid var(--border-default); background: var(--border-default); }
+  .evidence-pillars article { min-height: 16rem; padding: var(--space-5); background: var(--surface-page); }
+  .evidence-pillars span { font: 600 var(--font-size-label)/1 var(--font-utility); color: var(--accent-proof); }
+  .evidence-pillars h3 { margin-top: var(--space-7); font-size: clamp(1.4rem, 3vw, 2rem); }
+  .evidence-pillars p { margin-top: var(--space-4); color: var(--text-secondary); }
+  .portfolio-note { max-width: 39rem; margin-top: var(--space-4); padding-left: var(--space-4); border-left: 3px solid var(--accent-proof); color: var(--text-secondary); font-size: 0.95rem; }
+  .projects-grid { display: grid; gap: var(--space-5); }
+  .section-action { display: flex; justify-content: flex-end; margin-top: var(--space-6); }
+  .section-action :global(svg) { width: 1rem; }
+  .process-grid { display: grid; gap: 1px; margin: 0 0 var(--space-7); padding: 0; border: 1px solid color-mix(in srgb, var(--color-white) 28%, transparent); background: color-mix(in srgb, var(--color-white) 28%, transparent); list-style: none; }
+  .process-grid li { min-height: 18rem; padding: var(--space-5); background: var(--surface-strong); }
+  .process-grid p { color: var(--color-mineral-200); }
+  .about-strip__grid { display: grid; gap: var(--space-8); align-items: center; }
+  .identity-card { min-height: 31rem; display: grid; grid-template-rows: auto 1fr auto; padding: var(--space-5); background: var(--surface-mineral); color: var(--text-inverse); }
+  .identity-card__ref { font: 500 var(--font-size-label)/1.4 var(--font-utility); color: var(--color-mineral-200); }
+  .identity-card strong { align-self: center; font: 800 clamp(8rem, 28vw, 18rem)/0.72 var(--font-display); letter-spacing: -0.12em; }
+  .identity-card p { margin: 0; font: 500 var(--font-size-label)/1.5 var(--font-utility); text-transform: uppercase; }
+  .about-strip h2 { max-width: 14ch; }
+  .about-lead { margin-top: var(--space-6); font-size: var(--font-size-body-lg); }
+  .about-strip p:not(.eyebrow) { max-width: 42rem; color: var(--text-secondary); }
+  .about-strip :global(.link-arrow svg) { width: 1rem; }
+  .faq-grid { display: grid; gap: var(--space-8); }
+  .faq-grid h2 { max-width: 12ch; }
+  .faq-list { border-top: 1px solid var(--border-strong); }
+  .faq-list details { border-bottom: 1px solid var(--border-default); }
+  .faq-list summary { min-height: 4.75rem; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: var(--space-4); cursor: pointer; font-weight: 700; list-style: none; }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary span { width: 2.75rem; height: 2.75rem; display: grid; place-items: center; font: 500 1.5rem/1 var(--font-utility); transition: transform var(--motion-fast) var(--ease-out); }
+  .faq-list details[open] summary span { transform: rotate(45deg); }
+  .faq-list details p { max-width: 55ch; padding: 0 3.5rem var(--space-5) 0; color: var(--text-secondary); }
+  @media (min-width: 48rem) {
+    .home-hero__grid { grid-template-columns: 1.14fr 0.86fr; }
+    .gap-grid { grid-template-columns: repeat(3, 1fr); }
+    .evidence-intro__grid { grid-template-columns: 1.08fr 0.92fr; align-items: end; }
+    .evidence-pillars { grid-template-columns: repeat(2, 1fr); }
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    .process-grid { grid-template-columns: repeat(2, 1fr); }
+    .about-strip__grid { grid-template-columns: 0.82fr 1.18fr; }
+    .faq-grid { grid-template-columns: 0.8fr 1.2fr; }
+  }
+  @media (min-width: 64rem) { .evidence-pillars, .process-grid { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 47.99rem) { .home-hero__actions .button--text { width: auto; }.home-hero__note { font-size: 0.9rem; } }
+</style>

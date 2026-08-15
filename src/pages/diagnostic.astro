@@ -1,0 +1,160 @@
+---
+import { actions, isInputError } from 'astro:actions';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const result = Astro.getActionResult(actions.submitDiagnostic);
+const fieldErrors = isInputError(result?.error) ? result.error.fields : {};
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+const errorFor = (field: keyof typeof fieldErrors) => fieldErrors[field]?.join(' ');
+---
+
+<BaseLayout title="Demander un diagnostic de crédibilité | Dieudonne Gwet" description="Présentez votre entreprise, vos preuves disponibles et votre objectif pour vérifier si une mission Évidence est adaptée." noindex>
+  <header class="diagnostic-hero">
+    <div class="container diagnostic-intro">
+      <div><p class="eyebrow">Première étape · gratuite</p><h1>Demander mon diagnostic de crédibilité</h1></div>
+      <div><p class="lead">Ce formulaire prépare un échange exploratoire gratuit de 20 à 30 minutes. Il ne constitue ni une commande, ni le diagnostic approfondi payant.</p><div class="steps"><span><strong>01</strong> Formulaire</span><span><strong>02</strong> Échange gratuit</span><span><strong>03</strong> Diagnostic approfondi si pertinent</span></div></div>
+    </div>
+  </header>
+
+  <section class="section section--soft">
+    <div class="container form-layout">
+      <aside>
+        <p class="eyebrow">Avant de commencer</p>
+        <h2>Ce qui se passe ensuite</h2>
+        <ol class="after-list">
+          <li><strong>Lecture de votre demande</strong><span>Je vérifie le contexte, le niveau de maturité et les éléments déjà disponibles.</span></li>
+          <li><strong>Échange exploratoire gratuit</strong><span>Si le sujet correspond à mon champ d’intervention, nous organisons un appel de 20 à 30 minutes.</span></li>
+          <li><strong>Proposition adaptée</strong><span>Selon le besoin : conseil ponctuel, diagnostic approfondi à 150 000 FCFA, ou proposition Évidence à partir de 1 200 000 FCFA.</span></li>
+        </ol>
+        <div class="notice"><strong>Déduction du diagnostic</strong><p>Les 150 000 FCFA du diagnostic approfondi sont déduits d’une mission Évidence signée dans les 30 jours suivant sa restitution.</p></div>
+      </aside>
+
+      <div class="form-panel">
+        {result && !result.error ? (
+          <div class="success-message" role="status" tabindex="-1" data-result-message>
+            <p class="eyebrow">Demande reçue · {result.data.reference}</p>
+            <h2>Merci. Votre contexte est maintenant plus clair.</h2>
+            <p>{result.data.preview ? 'Le formulaire fonctionne en environnement de développement, mais aucun stockage ni e-mail n’est configuré. Cette demande de test n’a pas été transmise.' : 'Je vais examiner votre demande avant de vous proposer la suite la plus honnête : un échange exploratoire, une autre piste, ou l’absence d’intérêt à engager un projet maintenant.'}</p>
+            <a class="button button--secondary" href="/realisations">Voir les réalisations</a>
+          </div>
+        ) : (
+          <>
+            {result?.error && <div class="form-error" role="alert"><strong>La demande n’a pas été envoyée.</strong><span>{result.error.message ?? 'Vérifiez les champs signalés puis réessayez.'}</span></div>}
+            <form method="POST" action={actions.submitDiagnostic} novalidate data-diagnostic-form>
+              <fieldset>
+                <legend><span>01</span> Vous et votre entreprise</legend>
+                <div class="fields-grid">
+                  <label>Nom et prénom <em>requis</em><input name="name" autocomplete="name" required maxlength="120" aria-invalid={Boolean(errorFor('name'))} />{errorFor('name') && <small class="field-error">{errorFor('name')}</small>}</label>
+                  <label>Entreprise <em>requis</em><input name="company" autocomplete="organization" required maxlength="160" aria-invalid={Boolean(errorFor('company'))} />{errorFor('company') && <small class="field-error">{errorFor('company')}</small>}</label>
+                  <label>Votre fonction <em>requis</em><input name="role" autocomplete="organization-title" required maxlength="120" /></label>
+                  <label>E-mail professionnel <em>requis</em><input type="email" name="email" autocomplete="email" required maxlength="200" />{errorFor('email') && <small class="field-error">{errorFor('email')}</small>}</label>
+                  <label>Téléphone / WhatsApp <em>requis</em><input type="tel" name="phone" autocomplete="tel" required maxlength="40" /></label>
+                  <label>Ville ou zone d’activité <em>requis</em><input name="location" autocomplete="address-level2" required maxlength="120" /></label>
+                  <label class="field-wide">Secteur d’activité <em>requis</em><input name="sector" required maxlength="160" placeholder="Ex. architecture, hôtellerie, construction…" /></label>
+                  <label>Site web actuel <span>facultatif</span><input type="url" name="website" inputmode="url" maxlength="300" placeholder="https://" /></label>
+                  <label>Réseaux sociaux <span>facultatif</span><input name="socialLinks" maxlength="600" placeholder="Liens ou noms de comptes" /></label>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend><span>02</span> Votre activité et vos preuves</legend>
+                <div class="fields-grid fields-grid--single">
+                  <label>Quelle est votre offre principale ? <em>requis</em><textarea name="primaryOffer" rows="4" required maxlength="2000"></textarea></label>
+                  <label>Quels clients voulez-vous convaincre en priorité ? <em>requis</em><textarea name="targetClients" rows="4" required maxlength="2000"></textarea></label>
+                  <label>Qu’est-ce qui ne fonctionne pas dans votre présence actuelle ? <em>requis</em><textarea name="currentProblem" rows="4" required maxlength="2000"></textarea></label>
+                  <label>Quelles preuves avez-vous déjà ? <em>requis</em><textarea name="availableProofs" rows="4" required maxlength="2000" placeholder="Réalisations, photos, chiffres vérifiables, témoignages, certifications, méthode…"></textarea></label>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend><span>03</span> Votre projet</legend>
+                <div class="fields-grid fields-grid--single">
+                  <label>Quel résultat attendez-vous du site ? <em>requis</em><textarea name="expectedOutcome" rows="4" required maxlength="2000"></textarea></label>
+                </div>
+                <div class="fields-grid">
+                  <label>Quand souhaitez-vous démarrer ? <em>requis</em><select name="timeline" required><option value="">Choisir</option><option>Dès que possible</option><option>Dans 1 à 2 mois</option><option>Dans 3 à 6 mois</option><option>Je prépare encore le projet</option></select></label>
+                  <label>Budget envisagé <em>requis</em><select name="budget" required><option value="">Choisir</option><option>Moins de 600 000 FCFA</option><option>600 000 à 1 199 999 FCFA</option><option>1 200 000 à 2 000 000 FCFA</option><option>Plus de 2 000 000 FCFA</option><option>Budget à définir</option></select></label>
+                  <label class="field-wide">Qui participe à la décision ? <em>requis</em><input name="decisionMakers" required maxlength="300" placeholder="Ex. moi-même, direction générale, associés…" /></label>
+                  <label class="field-wide">Comment m’avez-vous connu ? <span>facultatif</span><input name="referralSource" maxlength="300" /></label>
+                </div>
+              </fieldset>
+
+              <div class="honeypot" aria-hidden="true"><label>Votre site de confirmation<input name="websiteConfirmation" tabindex="-1" autocomplete="off" /></label></div>
+              {turnstileSiteKey && <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-response-field-name="turnstileToken"></div>}
+              {turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+              <label class="consent"><input type="checkbox" name="consent" required /><span>J’accepte que les informations transmises soient utilisées uniquement pour répondre à cette demande. <a href="/confidentialite">Voir la politique de confidentialité</a>.</span></label>
+              <p class="form-status" aria-live="polite" data-form-status></p>
+              <button class="button submit-button" type="submit"><span>Envoyer ma demande</span><span aria-hidden="true">→</span></button>
+              <p class="submit-note">Aucun paiement n’est demandé à cette étape.</p>
+            </form>
+          </>
+        )}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-diagnostic-form]');
+  const status = document.querySelector<HTMLElement>('[data-form-status]');
+  const resultMessage = document.querySelector<HTMLElement>('[data-result-message]');
+  resultMessage?.focus();
+  form?.addEventListener('submit', (event) => {
+    const fields = [...form.querySelectorAll('input, textarea, select')];
+    fields.forEach((field) => field.removeAttribute('aria-invalid'));
+    if (!form.checkValidity()) {
+      event.preventDefault();
+      const firstInvalid = fields.find((field) => 'validity' in field && !(field as HTMLInputElement).validity.valid);
+      if (firstInvalid instanceof HTMLElement) {
+        firstInvalid.setAttribute('aria-invalid', 'true');
+        firstInvalid.scrollIntoView({ block: 'center' });
+        firstInvalid.focus();
+      }
+      if (status) status.textContent = 'Vérifiez le premier champ signalé.';
+      return;
+    }
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    if (button) { button.disabled = true; button.querySelector('span')!.textContent = 'Envoi en cours…'; }
+    if (status) status.textContent = 'Envoi de votre demande en cours.';
+  });
+</script>
+
+<style>
+  .diagnostic-hero { padding: clamp(4rem, 8vw, 7rem) 0; border-bottom: 1px solid var(--border-default); }
+  .diagnostic-intro, .form-layout { display: grid; gap: var(--space-7); align-items: start; }
+  .diagnostic-hero h1 { max-width: 14ch; }
+  .lead { color: var(--text-secondary); font-size: var(--font-size-body-lg); }
+  .steps { display: grid; gap: var(--space-3); margin-top: var(--space-6); font: 600 var(--font-size-label)/1.4 var(--font-utility); text-transform: uppercase; }
+  .steps span { display: grid; grid-template-columns: 2rem 1fr; gap: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--border-default); }
+  .steps strong { color: var(--accent-proof); }
+  .form-layout aside h2 { max-width: 12ch; }
+  .after-list { margin: var(--space-6) 0; padding: 0; list-style: none; counter-reset: after; }
+  .after-list li { display: grid; gap: var(--space-2); padding: var(--space-4) 0; border-top: 1px solid var(--border-default); }
+  .after-list span { color: var(--text-secondary); }
+  .form-panel { min-width: 0; padding: clamp(1.25rem, 4vw, 3rem); border: 1px solid var(--border-default); background: var(--surface-raised); }
+  form { display: grid; gap: var(--space-7); }
+  fieldset { min-width: 0; margin: 0; padding: 0 0 var(--space-7); border: 0; border-bottom: 1px solid var(--border-default); }
+  legend { width: 100%; margin-bottom: var(--space-6); font: 700 var(--font-size-h3)/1.15 var(--font-display); letter-spacing: -.03em; }
+  legend span { margin-right: var(--space-3); color: var(--accent-proof); font: 600 var(--font-size-label)/1 var(--font-utility); }
+  .fields-grid { display: grid; gap: var(--space-5); }
+  label:not(.consent) { display: grid; gap: var(--space-2); font-weight: 600; }
+  label em, label > span { color: var(--text-secondary); font: 500 var(--font-size-label)/1.3 var(--font-utility); font-style: normal; text-transform: uppercase; }
+  label em { color: var(--accent-proof); }
+  input, select, textarea { width: 100%; min-height: 3rem; padding: .75rem .85rem; border: 1px solid var(--border-strong); border-radius: 0; background: var(--surface-page); color: var(--text-primary); }
+  textarea { min-height: 7.5rem; resize: vertical; }
+  input:hover, select:hover, textarea:hover { border-color: var(--text-secondary); }
+  input[aria-invalid="true"], select[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: var(--color-error-700); }
+  .field-error { color: var(--color-error-700); }
+  .consent { display: grid; grid-template-columns: 1.5rem 1fr; gap: var(--space-3); align-items: start; }
+  .consent input { width: 1.25rem; min-height: 1.25rem; height: 1.25rem; margin-top: .15rem; }
+  .honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+  .form-error, .success-message { display: grid; gap: var(--space-3); padding: var(--space-5); border-left: 4px solid var(--color-error-700); margin-bottom: var(--space-6); background: var(--surface-soft); }
+  .form-error span { color: var(--text-secondary); }
+  .success-message { border-color: var(--color-success-700); }
+  .success-message h2 { max-width: 14ch; }
+  .success-message p:not(.eyebrow) { max-width: 40rem; color: var(--text-secondary); }
+  .submit-button { justify-content: space-between; }
+  .submit-note, .form-status { margin: 0; color: var(--text-secondary); font-size: .9rem; }
+  @media (min-width: 48rem) { .diagnostic-intro { grid-template-columns: 1.15fr .85fr; }.fields-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }.fields-grid--single { grid-template-columns: 1fr; }.field-wide { grid-column: 1 / -1; } }
+  @media (min-width: 64rem) { .form-layout { grid-template-columns: minmax(17rem, .65fr) minmax(0, 1.35fr); gap: clamp(3rem, 7vw, 7rem); }.form-layout aside { position: sticky; top: calc(var(--header-height) + var(--space-6)); } }
+</style>

@@ -1,0 +1,26 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "dieudonnegwet-com",
+  "main": "@astrojs/cloudflare/entrypoints/server",
+  "compatibility_date": "2026-08-14",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "./dist"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "dieudonnegwet-leads",
+      "database_id": "29de9ba2-3a8a-4933-9e12-dddb31b8d206",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    "ENVIRONMENT": "production",
+    "CONTACT_TO_EMAIL": "dieudonnegwet86@gmail.com",
+    "CONTACT_FROM_EMAIL": "Dieudonne Gwet <contact@dieudonnegwet.com>"
+  }
+}
